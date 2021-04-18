@@ -88,6 +88,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
             }
         };
         startLocationUpdates();
+        
         //basic intialisation..
         initViews();
     }
