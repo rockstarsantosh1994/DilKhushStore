@@ -1,0 +1,28 @@
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:buttonGravity="center_vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:minHeight="?attr/actionBarSize"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:background="@color/purple_700">
+
+   <!-- <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@mipmap/nuclemon_symbol"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_10ssp"
+            />
+
+    </RelativeLayout>-->
+
+
+</androidx.appcompat.widget.Toolbar>

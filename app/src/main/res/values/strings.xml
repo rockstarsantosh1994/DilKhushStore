@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DilKhush Store</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="register">Register</string>
+    <string name="no_account_yet_signup_now">No Account Yet? SignUp Now</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="fname">FirstName <font color="red">*</font></string>
+    <string name="lname">LastName <font color="red">*</font></string>
+    <string name="contact_number">Contact Number</string>
+    <string name="address">Address</string>
+</resources>
