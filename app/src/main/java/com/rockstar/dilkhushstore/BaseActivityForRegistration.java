@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.paperdb.Paper;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivityForRegistration extends AppCompatActivity {
 
     public Context mContext;
     public Unbinder unbinder;
@@ -38,4 +38,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         unbinder.unbind();
     }
+
+    public abstract void onComplete(@NonNull Task<Location> task);
+
+    public abstract void onLocationChanged(Location location);
 }

@@ -1,6 +1,8 @@
 package com.rockstar.dilkhushstore.services;
 
 import com.rockstar.dilkhushstore.model.LoginResponse;
+import com.rockstar.dilkhushstore.model.advertisement.AdvertisementResponse;
+import com.rockstar.dilkhushstore.model.products.ProductsResponse;
 
 import java.util.Map;
 
@@ -20,7 +22,10 @@ public interface DilKhushServices {
     @POST("addcustomer")
     Call<LoginResponse> addCustomer(@FieldMap Map<String, String> params);
 
-    //@GET("getAllMedicineDosage.php")
-    //Call<DosageResponse> getAllMedicineDosage();
+    @GET("loadads")
+    Call<AdvertisementResponse> loadAds();
+
+    @GET("loadproducts")
+    Call<ProductsResponse> loadProducts();
 
 }

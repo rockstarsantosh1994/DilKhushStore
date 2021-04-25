@@ -114,25 +114,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     //String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
                     Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    if(loginResponse.getData().size()>0){
+                        CommonMethods.setPreference(LoginActivity.this, AllKeys.CUSTOMER_ID, String.valueOf(loginResponse.getData().get(0).getCustomerid()));
+                        CommonMethods.setPreference(LoginActivity.this, AllKeys.FNAME, loginResponse.getData().get(0).getFname());
+                        CommonMethods.setPreference(LoginActivity.this, AllKeys.LNAME, loginResponse.getData().get(0).getLname());
+                        CommonMethods.setPreference(LoginActivity.this, AllKeys.CONTACT_NO, loginResponse.getData().get(0).getContactnumber());
+                        CommonMethods.setPreference(LoginActivity.this, AllKeys.ADDRESS, loginResponse.getData().get(0).getLocationAddress());
 
-                    CommonMethods.setPreference(LoginActivity.this, AllKeys.CUSTOMER_ID, String.valueOf(loginResponse.getData().get(0).getCustomerid()));
-                    CommonMethods.setPreference(LoginActivity.this, AllKeys.FNAME, loginResponse.getData().get(0).getFname());
-                    CommonMethods.setPreference(LoginActivity.this, AllKeys.LNAME, loginResponse.getData().get(0).getLname());
-                    CommonMethods.setPreference(LoginActivity.this, AllKeys.CONTACT_NO, loginResponse.getData().get(0).getContactnumber());
-                    CommonMethods.setPreference(LoginActivity.this, AllKeys.ADDRESS, loginResponse.getData().get(0).getLocationAddress());
+                        Intent intent = new Intent(mContext, DashBoardActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
 
-                    Intent intent = new Intent(mContext, DashBoardActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-
-                    if (chRememberMe.isChecked()) {
-                        CommonMethods.setPreference(LoginActivity.this, AllKeys.LOGIN_USER_NAME, etUsername.getText().toString());
-                        CommonMethods.setPreference(LoginActivity.this, AllKeys.LOGIN_PASSWORD, etPassword.getText().toString());
-                    } else {
-                        CommonMethods.setPreference(LoginActivity.this, AllKeys.LOGIN_USER_NAME, AllKeys.DNF);
-                        CommonMethods.setPreference(LoginActivity.this, AllKeys.LOGIN_PASSWORD, AllKeys.DNF);
+                        if (chRememberMe.isChecked()) {
+                            CommonMethods.setPreference(LoginActivity.this, AllKeys.LOGIN_USER_NAME, etUsername.getText().toString());
+                            CommonMethods.setPreference(LoginActivity.this, AllKeys.LOGIN_PASSWORD, etPassword.getText().toString());
+                        } else {
+                            CommonMethods.setPreference(LoginActivity.this, AllKeys.LOGIN_USER_NAME, AllKeys.DNF);
+                            CommonMethods.setPreference(LoginActivity.this, AllKeys.LOGIN_PASSWORD, AllKeys.DNF);
+                        }
+                    }else{
+                        showDialogWindow("Warning",loginResponse.getMessage());
                     }
+
                 } else {
                     showDialogWindow("Warning",loginResponse.getMessage());
                 }

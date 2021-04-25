@@ -40,4 +40,27 @@
     <color name="blue_appointment">#E4EEFF</color>
     <color name="border_appointment">#3F84F8</color>
     <color name="calender_green">#1B9705</color>
+
+
+    <bool name="default_circle_indicator_centered">true</bool>
+    <color name="font_black_0">#212121</color>
+
+    <color name="default_circle_indicator_fill_color">@color/purple_200</color>
+    <color name="default_circle_indicator_page_color">#FFFFFFFF</color>
+
+    <integer name="default_circle_indicator_orientation">0</integer>
+
+    <dimen name="default_circle_indicator_radius">5dp</dimen>
+
+    <bool name="default_circle_indicator_snap">false</bool>
+
+    <color name="default_circle_indicator_stroke_color">#FFDDDDDD</color>
+    <color name="violet">#9c27b0</color>
+    <color name="red">#d50000</color>
+    <color name="cyan100">#84ffff</color>
+    <color name="grey50">#fafafa</color>
+    <color name="blue">#0000ff</color>
+
+    <dimen name="default_circle_indicator_stroke_width">0dp</dimen>
+
 </resources>

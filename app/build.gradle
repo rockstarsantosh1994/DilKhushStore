@@ -76,4 +76,7 @@ dependencies {
     //PaperDB...
     implementation 'io.paperdb:paperdb:2.7.1'
 
+    //Glide Library
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
 }
