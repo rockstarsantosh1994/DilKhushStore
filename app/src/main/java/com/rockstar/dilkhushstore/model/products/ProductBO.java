@@ -1,14 +1,47 @@
 package com.rockstar.dilkhushstore.model.products;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class ProductBO {
+public class ProductBO implements Parcelable {
     private String productid;
     private String productname;
     private String price;
     private String imagepath;
     private String unitprice;
     private ArrayList<MappingBO> mapping;
+    private MappingBO mappingBO;
+
+    public ProductBO(String productid, String productname, String price, String imagepath, String unitprice, MappingBO mapping) {
+        this.productid = productid;
+        this.productname = productname;
+        this.price = price;
+        this.imagepath = imagepath;
+        this.unitprice = unitprice;
+        this.mappingBO = mapping;
+    }
+
+    protected ProductBO(Parcel in) {
+        productid = in.readString();
+        productname = in.readString();
+        price = in.readString();
+        imagepath = in.readString();
+        unitprice = in.readString();
+    }
+
+    public static final Creator<ProductBO> CREATOR = new Creator<ProductBO>() {
+        @Override
+        public ProductBO createFromParcel(Parcel in) {
+            return new ProductBO(in);
+        }
+
+        @Override
+        public ProductBO[] newArray(int size) {
+            return new ProductBO[size];
+        }
+    };
 
     public String getProductid( ) {
         return productid;
@@ -59,5 +92,19 @@ public class ProductBO {
 
     public void setMapping(ArrayList<MappingBO> mapping) {
         this.mapping = mapping;
+    }
+
+    @Override
+    public int describeContents( ) {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(productid);
+        parcel.writeString(productname);
+        parcel.writeString(price);
+        parcel.writeString(imagepath);
+        parcel.writeString(unitprice);
     }
 }

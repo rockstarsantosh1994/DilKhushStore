@@ -2,6 +2,7 @@ package com.rockstar.dilkhushstore;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,15 +12,22 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.rockstar.dilkhushstore.adapter.CustomPagerAdapter;
+import com.rockstar.dilkhushstore.adapter.ProductsAdapter;
 import com.rockstar.dilkhushstore.model.advertisement.AdvertisementResponse;
+import com.rockstar.dilkhushstore.model.products.ProductBO;
 import com.rockstar.dilkhushstore.model.products.ProductsResponse;
 import com.rockstar.dilkhushstore.services.ApiRequestHelper;
 import com.rockstar.dilkhushstore.utility.AllKeys;
@@ -27,6 +35,8 @@ import com.rockstar.dilkhushstore.utility.CommonMethods;
 import com.rockstar.dilkhushstore.widget.LoopViewPager;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -38,10 +48,16 @@ public class DashBoardActivity extends BaseActivity {
     RelativeLayout rrBanner;
     @BindView(R.id.viewpager)
     LoopViewPager viewpager;
+    @BindView(R.id.rv_products)
+    RecyclerView rvProducts;
+
+    public static TextView tvCount;
+    public ImageView ivCart;
 
     private static final int MESSAGE_SCROLL = 123;
 
     private static final String TAG = "DashBoardActivity";
+    public static final ArrayList<ProductBO> productBOArrayList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +82,31 @@ public class DashBoardActivity extends BaseActivity {
         return R.layout.activity_dash_board;
     }
 
+    @SuppressLint("SetTextI18n")
     private void initViews() {
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         toolbar.setTitle(getResources().getString(R.string.app_name));
         toolbar.setTitleTextColor(Color.WHITE);
+        tvCount=toolbar.findViewById(R.id.tv_count);
+        ivCart=toolbar.findViewById(R.id.iv_shopping_cart);
 
+        if(productBOArrayList.size()==0){
+            tvCount.setVisibility(View.GONE);
+        }else{
+            tvCount.setVisibility(View.VISIBLE);
+            tvCount.setText(""+productBOArrayList.size());
+        }
+
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(mContext,2);
+        rvProducts.setLayoutManager(gridLayoutManager);
+
+        ivCart.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext,AddToCartActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
     }
 
     private void loadAdvertisement(){
@@ -108,15 +142,16 @@ public class DashBoardActivity extends BaseActivity {
     }
 
     private void loadProductsData(){
-        dilKhush.getApiRequestHelper().loadAds(new ApiRequestHelper.OnRequestComplete() {
+        dilKhush.getApiRequestHelper().loadProducts(new ApiRequestHelper.OnRequestComplete() {
             @Override
             public void onSuccess(Object object) {
                 ProductsResponse productsResponse = (ProductsResponse) object;
                 if (productsResponse.getResponsecode()==200) {
                     if (productsResponse.getData().size() > 0) {
-                        //
+                        ProductsAdapter productsAdapter=new ProductsAdapter(mContext,productsResponse.getData(),DashBoardActivity.this);
+                        rvProducts.setAdapter(productsAdapter);
                     } else {
-                        //
+                        Toast.makeText(mContext, "No Data Found!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

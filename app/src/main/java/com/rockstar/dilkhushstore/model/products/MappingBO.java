@@ -46,4 +46,15 @@ public class MappingBO {
     public void setPrice(String price) {
         this.price = price;
     }
+
+    @Override
+    public String toString( ) {
+        return "MappingBO{" +
+                "mapid='" + mapid + '\'' +
+                ", productid='" + productid + '\'' +
+                ", pvalue='" + pvalue + '\'' +
+                ", punit='" + punit + '\'' +
+                ", price='" + price + '\'' +
+                '}';
+    }
 }

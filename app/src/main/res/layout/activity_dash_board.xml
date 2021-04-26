@@ -13,7 +13,7 @@
 
     <include
         android:id="@+id/toolbar_dashboard"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar_add_to_cart" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -64,5 +64,10 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_products"
+        android:layout_margin="@dimen/_5sdp"/>
     </LinearLayout>
 </RelativeLayout>
