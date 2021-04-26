@@ -33,6 +33,16 @@
             android:layout_gravity="right"
             android:layout_marginEnd="@dimen/_5sdp"
             android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:id="@+id/iv_logout"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:background="@drawable/ic_logout"
+            android:layout_gravity="right"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:backgroundTint="@color/white"/>
     </LinearLayout>
 
 </androidx.appcompat.widget.Toolbar>

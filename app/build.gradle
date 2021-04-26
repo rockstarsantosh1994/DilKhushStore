@@ -1,5 +1,11 @@
 plugins {
     id 'com.android.application'
+
+    //google services required...
+    id 'com.google.gms.google-services'
+
+    // Apply the Crashlytics Gradle plugin
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -38,6 +44,15 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //FireBase Crashanalytics...
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+
+    // Declare the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 
     //Dimension file
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
@@ -82,4 +97,12 @@ dependencies {
 
     //gson dependency....
     implementation 'com.google.code.gson:gson:2.8.6'
+}
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url 'https://jitpack.io'
+    }
 }

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "377346188208",
+    "project_id": "dilkhushstore-99283",
+    "storage_bucket": "dilkhushstore-99283.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377346188208:android:cac49cf6b4acba22ba2c75",
+        "android_client_info": {
+          "package_name": "com.rockstar.dilkhushstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377346188208-o63gtslqq2um18aqg3hd9qjk7g7gkht5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rockstar.dilkhushstore",
+            "certificate_hash": "ab85239a177312b0618642cd9d14ae4079400ed8"
+          }
+        },
+        {
+          "client_id": "377346188208-cbntn44oht2s2tmadoepq6hvp285sbd5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfCIAdkP3HLLEcB64OhiT5-t34CmBM-pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377346188208-cbntn44oht2s2tmadoepq6hvp285sbd5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

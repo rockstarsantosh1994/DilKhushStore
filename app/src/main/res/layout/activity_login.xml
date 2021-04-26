@@ -43,7 +43,8 @@
             android:imeOptions="actionNext"
             android:inputType="number"
             android:maxLength="10"
-            android:paddingStart="@dimen/_20sdp" />
+            android:paddingLeft="@dimen/_20sdp"
+            android:paddingRight="@dimen/_20sdp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

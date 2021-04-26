@@ -1,6 +1,7 @@
 package com.rockstar.dilkhushstore;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -52,7 +53,7 @@ public class DashBoardActivity extends BaseActivity {
     RecyclerView rvProducts;
 
     public static TextView tvCount;
-    public ImageView ivCart;
+    public ImageView ivCart,ivLogout;
 
     private static final int MESSAGE_SCROLL = 123;
 
@@ -91,6 +92,7 @@ public class DashBoardActivity extends BaseActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         tvCount=toolbar.findViewById(R.id.tv_count);
         ivCart=toolbar.findViewById(R.id.iv_shopping_cart);
+        ivLogout=toolbar.findViewById(R.id.iv_logout);
 
         if(productBOArrayList.size()==0){
             tvCount.setVisibility(View.GONE);
@@ -106,6 +108,32 @@ public class DashBoardActivity extends BaseActivity {
             Intent intent = new Intent(mContext,AddToCartActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+        });
+
+        ivLogout.setOnClickListener(view -> {
+            new AlertDialog.Builder(DashBoardActivity.this)
+                    .setTitle(R.string.app_name)
+                    .setMessage(R.string.are_you_sure_want_to_logout)
+
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(R.string.yes, (dialog, which) -> {
+                        CommonMethods.setPreference(mContext, AllKeys.CUSTOMER_ID, AllKeys.DNF);
+                        CommonMethods.setPreference(mContext, AllKeys.FNAME, AllKeys.DNF);
+                        CommonMethods.setPreference(mContext, AllKeys.LNAME, AllKeys.DNF);
+                        CommonMethods.setPreference(mContext, AllKeys.ADDRESS, AllKeys.DNF);
+                        CommonMethods.setPreference(mContext, AllKeys.CONTACT_NO, AllKeys.DNF);
+                        // Continue with logout operation
+                        Intent intent1 = new Intent(mContext, LoginActivity.class);
+                        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent1);
+                        Toast.makeText(mContext, R.string.see_you_again, Toast.LENGTH_SHORT).show();
+                    })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton(R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         });
     }
 

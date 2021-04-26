@@ -31,7 +31,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".LoginActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".RegistrationActivity1"
+        <activity android:name=".RegistrationActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
