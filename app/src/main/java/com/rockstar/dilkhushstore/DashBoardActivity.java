@@ -122,7 +122,7 @@ public class DashBoardActivity extends BaseActivity {
                         CommonMethods.setPreference(mContext, AllKeys.FNAME, AllKeys.DNF);
                         CommonMethods.setPreference(mContext, AllKeys.LNAME, AllKeys.DNF);
                         CommonMethods.setPreference(mContext, AllKeys.ADDRESS, AllKeys.DNF);
-                        CommonMethods.setPreference(mContext, AllKeys.CONTACT_NO, AllKeys.DNF);
+                        CommonMethods.setPreference(mContext, AllKeys.CUSTOMER_ID, AllKeys.DNF);
                         // Continue with logout operation
                         Intent intent1 = new Intent(mContext, LoginActivity.class);
                         intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
