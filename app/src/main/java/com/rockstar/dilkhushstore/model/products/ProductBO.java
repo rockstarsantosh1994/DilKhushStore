@@ -23,25 +23,15 @@ public class ProductBO implements Parcelable {
         this.mappingBO = mapping;
     }
 
-    protected ProductBO(Parcel in) {
-        productid = in.readString();
-        productname = in.readString();
-        price = in.readString();
-        imagepath = in.readString();
-        unitprice = in.readString();
+    public ProductBO(String productid, String productname, String price, String imagepath, String unitprice, ArrayList<MappingBO> mapping, MappingBO mappingBO) {
+        this.productid = productid;
+        this.productname = productname;
+        this.price = price;
+        this.imagepath = imagepath;
+        this.unitprice = unitprice;
+        this.mapping = mapping;
+        this.mappingBO = mappingBO;
     }
-
-    public static final Creator<ProductBO> CREATOR = new Creator<ProductBO>() {
-        @Override
-        public ProductBO createFromParcel(Parcel in) {
-            return new ProductBO(in);
-        }
-
-        @Override
-        public ProductBO[] newArray(int size) {
-            return new ProductBO[size];
-        }
-    };
 
     public String getProductid( ) {
         return productid;
@@ -84,15 +74,40 @@ public class ProductBO implements Parcelable {
     }
 
     public ArrayList<MappingBO> getMapping( ) {
-        if (this.mapping == null) {
-            this.mapping = new ArrayList<MappingBO>();
-        }
         return mapping;
     }
 
     public void setMapping(ArrayList<MappingBO> mapping) {
         this.mapping = mapping;
     }
+
+    public MappingBO getMappingBO( ) {
+        return mappingBO;
+    }
+
+    public void setMappingBO(MappingBO mappingBO) {
+        this.mappingBO = mappingBO;
+    }
+
+    protected ProductBO(Parcel in) {
+        productid = in.readString();
+        productname = in.readString();
+        price = in.readString();
+        imagepath = in.readString();
+        unitprice = in.readString();
+    }
+
+    public static final Creator<ProductBO> CREATOR = new Creator<ProductBO>() {
+        @Override
+        public ProductBO createFromParcel(Parcel in) {
+            return new ProductBO(in);
+        }
+
+        @Override
+        public ProductBO[] newArray(int size) {
+            return new ProductBO[size];
+        }
+    };
 
     @Override
     public int describeContents( ) {

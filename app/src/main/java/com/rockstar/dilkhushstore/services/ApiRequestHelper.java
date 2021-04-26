@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
+import com.rockstar.dilkhushstore.model.CommonResponse;
 import com.rockstar.dilkhushstore.model.LoginResponse;
 import com.rockstar.dilkhushstore.model.advertisement.AdvertisementResponse;
 import com.rockstar.dilkhushstore.model.products.ProductsResponse;
@@ -131,7 +132,33 @@ public class ApiRequestHelper {
         });
     }
 
+    public void placeOrder(Map<String, String> params, final OnRequestComplete onRequestComplete) {
+        Call<CommonResponse> call = dilKhushServices.placeOrder(params);
+        get_place_order(onRequestComplete, call);
+    }
 
+    private void get_place_order(final OnRequestComplete onRequestComplete, Call<CommonResponse> call) {
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                if (response.isSuccessful()) {
+                    onRequestComplete.onSuccess(response.body());
+                } else {
+                    try {
+                        onRequestComplete.onFailure(Html.fromHtml(response.errorBody().string()) + "");
+                    } catch (IOException e) {
+                        onRequestComplete.onFailure(AllKeys.UNPROPER_RESPONSE);
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                handle_fail_response(t, onRequestComplete);
+            }
+        });
+    }
 
     public static synchronized ApiRequestHelper init(DilKhush application) {
         if (null == instance) {

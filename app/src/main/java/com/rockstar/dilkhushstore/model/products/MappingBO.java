@@ -7,6 +7,10 @@ public class MappingBO {
    private String punit;
    private String price;
 
+    public MappingBO(String mapid) {
+        this.mapid = mapid;
+    }
+
     public String getMapid( ) {
         return mapid;
     }

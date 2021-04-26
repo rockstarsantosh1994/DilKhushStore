@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.rockstar.dilkhushstore.LoginActivity;
+import com.rockstar.dilkhushstore.R;
+import com.shreyaspatil.MaterialDialog.MaterialDialog;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -118,5 +122,24 @@ public class CommonMethods {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void showDialogWindowForSuccess(Context context,String title,String message) {
+        MaterialDialog mDialog = new MaterialDialog.Builder((Activity) context)
+                .setTitle(title)
+                .setMessage(message)
+                .setCancelable(false)
+                .setAnimation(R.raw.success_exploration)
+                .setPositiveButton("Ok",
+                        (dialogInterface, which) -> {
+                            // Delete Operation
+                            dialogInterface.dismiss();
+                            ((Activity) context).finish();
+                        })
+                //.setNegativeButton("Cancel", (dialogInterface, which) -> dialogInterface.dismiss())
+                .build();
+
+        // Show Dialog
+        mDialog.show();
     }
 }

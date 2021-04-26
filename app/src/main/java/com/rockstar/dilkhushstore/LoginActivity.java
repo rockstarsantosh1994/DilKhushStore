@@ -81,7 +81,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     if (CommonMethods.isNetworkAvailable(LoginActivity.this)) {
                         userAuthentication();
                     } else {
-                        Toast.makeText(LoginActivity.this, AllKeys.NO_INTERNET_AVAILABLE, Toast.LENGTH_SHORT).show();
+                        showDialogWindow("Warning",AllKeys.NO_INTERNET_AVAILABLE);
                     }
                 }
                 break;

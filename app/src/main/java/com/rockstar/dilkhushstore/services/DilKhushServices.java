@@ -1,5 +1,6 @@
 package com.rockstar.dilkhushstore.services;
 
+import com.rockstar.dilkhushstore.model.CommonResponse;
 import com.rockstar.dilkhushstore.model.LoginResponse;
 import com.rockstar.dilkhushstore.model.advertisement.AdvertisementResponse;
 import com.rockstar.dilkhushstore.model.products.ProductsResponse;
@@ -27,5 +28,9 @@ public interface DilKhushServices {
 
     @GET("loadproducts")
     Call<ProductsResponse> loadProducts();
+
+    @FormUrlEncoded
+    @POST("placeorder")
+    Call<CommonResponse> placeOrder(@FieldMap Map<String, String> params);
 
 }
